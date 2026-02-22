@@ -18,18 +18,22 @@ public class Baseclass {
 	public void setup() {
 
 	    ChromeOptions options = new ChromeOptions();
-	    options.addArguments("--headless"); // run without UI
-	    options.addArguments("--no-sandbox");
-	    options.addArguments("--disable-dev-shm-usage");
-	    options.addArguments("--start-maximized");
+
+	    String headless = System.getProperty("headless");
+
+	    if ("true".equals(headless)) {
+	        options.addArguments("--headless");
+	        options.addArguments("--no-sandbox");
+	        options.addArguments("--disable-dev-shm-usage");
+	    }
 
 	    driver = new ChromeDriver(options);
 
 	    driver.manage().deleteAllCookies();
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	    driver.get("https://appuat.franciscanecare.net/Login/Identifier?SchCode=DEMOIN");
+	    driver.manage().window().maximize();
 	}
-
 
 	@AfterMethod
 	public void tearDown() {
