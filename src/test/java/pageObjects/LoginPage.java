@@ -48,6 +48,15 @@ public class LoginPage extends BasePage {
     public void clickERPApps() {
         ERPApps.click();
     }
+    
+    @FindBy(xpath = "//div[contains(@class,'error') or contains(@class,'validation')]")
+    private WebElement errorMessage;
+
+    public String getErrorMessage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(errorMessage));
+        return errorMessage.getText();
+    }
 
     public void clickIcard() {
 
