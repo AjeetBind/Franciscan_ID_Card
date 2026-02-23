@@ -16,9 +16,9 @@ public class TC001_LoginpageTest extends Baseclass {
         lp = new LoginPage(driver);
 
         lp.setUserName("sf001");
-        lp.setPasswordName("Francis1988");
+        lp.setPasswordName("Francis@1988");
         lp.clickbtnLogin();
-
+         System.out.println(driver.getCurrentUrl());
         // Optional: validate login success
         Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"),
                 "Login failed -Invalid username or password!");
